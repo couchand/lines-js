@@ -32,6 +32,12 @@ describe "Line", ->
         to: [1, 2]
       ).should.throw /collinear/
 
+    it "rejects coincident coordinates", ->
+      (-> line
+        from: [4, 4]
+        to: [4, 4]
+      ).should.throw /coincident/
+
     it "allows coordinates sharing a row", ->
       (-> line
         from: [0, 0]

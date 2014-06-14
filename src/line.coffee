@@ -8,6 +8,8 @@ class Line
       throw new Error "to coordinates required"
     unless @vertical() or @horizontal()
       throw new Error "coordinates must be collinear"
+    if @vertical() and @horizontal()
+      throw new Error "coordinates must not be coincident"
     @style ?= "normal"
 
   horizontal: ->
