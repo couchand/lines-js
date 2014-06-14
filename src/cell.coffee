@@ -39,6 +39,9 @@ class Cell
       @_dirs.down
 
   toString: ->
-    chars[@left()][@up()][@right()][@down()]
+    left = chars[@left()] or chars.normal
+    up = left[@up()] or left.normal
+    right = up[@right()] or up.normal
+    down = right[@down()] or right.normal
 
 module.exports = -> new Cell()
