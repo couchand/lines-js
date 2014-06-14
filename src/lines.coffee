@@ -1,5 +1,6 @@
 # lines
 
+cell = require './cell'
 line = require './line'
 
 class Lines
@@ -43,15 +44,41 @@ class Lines
       Math.max.apply null, lines.map (l) -> l.to[1]
     )
     buffers = for row in [0..rows]
-      (' ' for col in [0..cols])
+      for col in [0..cols]
+        cell()
+
     for l in lines
-      for col in [l.from[0]..l.to[0]]
-        for row in [l.from[1]..l.to[1]]
-          buffers[row][col] = switch on
-            when l.horizontal() then "─"
-            when l.vertical() then "│"
+      switch on
+        when l.horizontal()
+          left = Math.min l.from[0], l.to[0]
+          right = Math.max l.from[0], l.to[0]
+
+          row = buffers[l.from[1]]
+          row[left].right l.style
+          row[right].left l.style
+
+          for col in [left+1...right]
+            row[col].left l.style
+            row[col].right l.style
+
+        when l.vertical()
+          up = Math.min l.from[1], l.to[1]
+          down = Math.max l.from[1], l.to[1]
+
+          col = l.from[0]
+          buffers[up][col].down l.style
+          buffers[down][col].up l.style
+
+          for row in [up+1...down]
+            buffers[row][col].up l.style
+            buffers[row][col].down l.style
+
     buffers
-      .map (buffer) -> buffer.join ''
+      .map (buffer) ->
+        buffer
+          .map (cell) ->
+            cell.toString()
+          .join ''
       .join '\n'
 
 module.exports = -> new Lines()

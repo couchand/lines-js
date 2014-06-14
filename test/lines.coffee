@@ -48,7 +48,7 @@ describe "lines", ->
           from: [0, 0]
           to: [1, 0]
 
-      pic.toString().should.equal "──"
+      pic.toString().should.equal "╶╴"
 
     it "stringifies vertical lines", ->
       pic = lines()
@@ -56,4 +56,15 @@ describe "lines", ->
           from: [1, 0]
           to: [1, 1]
 
-      pic.toString().should.equal " │\n │"
+      pic.toString().should.equal " ╷\n ╵"
+
+    it "stringifies corners", ->
+      pic = lines()
+        .line
+          from: [0, 0]
+          to: [1, 0]
+        .line
+          from: [0, 0]
+          to: [0, 1]
+
+      pic.toString().should.equal "┌╴\n╵ "

@@ -8,6 +8,7 @@ class Line
       throw new Error "to coordinates required"
     unless @vertical() or @horizontal()
       throw new Error "coordinates must be collinear"
+    @style ?= "normal"
 
   horizontal: ->
     @from[1] is @to[1]

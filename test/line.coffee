@@ -44,6 +44,13 @@ describe "Line", ->
         to: [0, 3]
       ).should.not.throw
 
+    it "defaults style to normal", ->
+      l = line
+        from: [0, 0]
+        to: [0, 1]
+
+      l.style.should.equal "normal"
+
   describe "horizontal", ->
     it "is true for coordinates sharing a row", ->
       l = line
