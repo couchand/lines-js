@@ -1,0 +1,19 @@
+{
+  "name": "lines-js",
+  "version": "0.0.1",
+  "author": "Andrew Couch <lines.js@andrewcou.ch>",
+  "description": "console line drawing with unicode box characters",
+  "repository": "https://github.com/couchand/lines-js.git",
+  "main": "./lib/index",
+  "license": "MIT",
+  "keywords": [
+    "line",
+    "box",
+    "drawing",
+    "console"
+  ],
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "mocha": "~1.18.2"
+  }
+}
