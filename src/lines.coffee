@@ -7,8 +7,8 @@ class Lines
   constructor: ->
     @_lines = []
 
-  line: (opts) ->
-    @_lines = @_lines.concat [line opts]
+  line: ->
+    @_lines = @_lines.concat [line.apply null, arguments]
     this
 
   box: ({from, to, style}) ->

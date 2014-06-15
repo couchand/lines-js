@@ -57,6 +57,13 @@ describe "Line", ->
 
       l.style.should.equal "normal"
 
+    it "takes ordered parameters in concise version", ->
+      l = line [0, 0], [1, 0], "bold"
+
+      l.from[0].should.equal 0
+      l.to[0].should.equal 1
+      l.style.should.equal "bold"
+
   describe "horizontal", ->
     it "is true for coordinates sharing a row", ->
       l = line
