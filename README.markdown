@@ -24,7 +24,7 @@ the Unicode box drawing characters.  Use it for console-based user
 interfaces, console art, or to build a [Funciton][0] compiler.
 
 ```javascript
-# tee.js
+// tee.js
 lines = require('lines-js');
 
 tee = lines()
