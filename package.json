@@ -2,7 +2,7 @@
   "name": "lines-js",
   "version": "0.0.2",
   "author": "Andrew Couch <lines.js@andrewcou.ch>",
-  "description": "console line drawing with unicode box characters",
+  "description": "console line drawing with unicode box-drawing characters",
   "repository": "https://github.com/couchand/lines-js.git",
   "main": "./lib/index",
   "license": "MIT",
