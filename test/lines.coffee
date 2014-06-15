@@ -41,6 +41,13 @@ describe "lines", ->
       sides = pic.lines()
       sides.length.should.equal 4
 
+    it "takes ordered parameters in concise form", ->
+      pic = lines()
+        .box [1, 1], [3, 3], "bold"
+
+      sides = pic.lines()
+      sides.length.should.equal 4
+
   describe "toString", ->
     it "stringifies horizontal lines", ->
       pic = lines()

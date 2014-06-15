@@ -11,7 +11,14 @@ class Lines
     @_lines = @_lines.concat [line.apply null, arguments]
     this
 
-  box: ({from, to, style}) ->
+  box: ->
+    if arguments.length is 1
+      {from, to, style} = arguments[0]
+    else
+      from = arguments[0]
+      to = arguments[1]
+      style = arguments[2]
+
     @line
       from: from
       to: [from[0], to[1]]

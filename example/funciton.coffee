@@ -27,10 +27,7 @@ functionDeclare = (program, name, nw) ->
 integerLiteral = (program, name, nw) ->
   {nw, se, sw, ne} = calculateBox name, nw
   program
-    .box
-      from: nw
-      to: se
-      style: "double"
+    .box nw, se, "double"
 
 addName = (str, name, nw) ->
   str
