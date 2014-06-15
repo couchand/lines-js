@@ -1,6 +1,6 @@
 # cell
 
-chars = require './char-map'
+char = require './char-query'
 
 class Cell
   constructor: ->
@@ -39,9 +39,10 @@ class Cell
       @_dirs.down
 
   toString: ->
-    left = chars[@left()] or chars.normal
-    up = left[@up()] or left.normal
-    right = up[@right()] or up.normal
-    down = right[@down()] or right.normal
+    char
+      left: @left()
+      up: @up()
+      right: @right()
+      down: @down()
 
 module.exports = -> new Cell()
