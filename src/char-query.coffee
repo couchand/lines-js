@@ -48,10 +48,12 @@ chars[1][2][0][2].double = '╢'
 chars[1][2][1][0].double = '╨'
 chars[1][2][1][2].double = '╫'
 
+chars[2][0][0][1].double = '╕'
 chars[2][0][0][2].double = '╗'
 chars[2][0][2][0].double = '═'
 chars[2][0][2][1].double = '╤'
 chars[2][0][2][2].double = '╦'
+chars[2][1][0][0].double = '╛'
 chars[2][1][0][1].double = '╡'
 chars[2][1][2][0].double = '╧'
 chars[2][1][2][1].double = '╪'
@@ -67,9 +69,33 @@ width = (style) ->
     else 0
 
 preferred = ({left, up, right, down}) ->
-  return 'double' if 'double' in [left, up, right, down]
-  return 'rounded' if 'rounded' in [left, up, right, down]
-  'default'
+  counts = {}
+  for style in [left, up, right, down] when style not in ['none', 'normal']
+    counts[style] ?= 0
+    counts[style] += 1
+  max = 0
+  maxes = no
+  for style, count of counts
+    return style if count is 3
+    if count > max
+      max = count
+      maxes = [style]
+    else if count is max
+      maxes = maxes.concat [style]
+  if max is 2
+    unless maxes.length is 2
+      return maxes[0]
+    else
+      down
+  if down in maxes
+    return down
+  else if up in maxes
+    return up
+  else if right in maxes
+    return right
+  else if left in maxes
+    return left
+  'normal'
 
 module.exports = ({left, up, right, down}) ->
   left ?=  'none'
