@@ -25,7 +25,7 @@ interfaces, console art, or to build a [Funciton][0] compiler.
 
 ```javascript
 # tee.js
-lines = require('./lib');
+lines = require('lines-js');
 
 tee = lines()
     .line({
