@@ -1,11 +1,18 @@
 # lines
 
+Stream = require 'stream'
+
 cell = require './cell'
 line = require './line'
 
-class Lines
+class Lines extends Stream.Readable
   constructor: ->
+    super()
     @_lines = []
+
+  _read: ->
+  flush: ->
+    @push @toString()
 
   line: ->
     @_lines = @_lines.concat [line.apply null, arguments]

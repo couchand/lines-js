@@ -6,6 +6,9 @@ lines = require '../lib'
 term = charm()
 term.pipe process.stdout
 
+pic = lines()
+pic.pipe term
+
 # generate data
 data = [1..10]
 
@@ -16,8 +19,6 @@ for index, value of data when +index isnt data.length - 1
 
 # draw lines
 draw = (a, b) ->
-  pic = lines()
-  
   for index, value of data
     style = switch +index
       when a then 'bold'
@@ -27,12 +28,14 @@ draw = (a, b) ->
   
   term.erase 'screen'
   term.position 0, 0
-  term.write pic.toString()
+  pic.flush()
 
 draw()
 
 # sort
 swap = (a, b) ->
+  pic.line [a, 0], [a, 10], 'none'
+  pic.line [b, 0], [b, 10], 'none'
   element = data[a]
   data[a] = data[b]
   data[b] = element
