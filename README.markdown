@@ -74,6 +74,7 @@ You pick:
 
   * the endpoints of each line
   * the line style
+  * the foreground and background colors
 
 Notably, the endpoints must lie on the same row or column, since the
 character set only supports horizontal and vertical lines (no diagonal
@@ -89,6 +90,9 @@ The available styles are:
 Not every style is supported for every possible intersection.  The
 best approximation is picked if the exact character is not available.
 
+Colors are handled by the `ansi-styles` module.  Only 16 color mode
+is supported, currently.
+
 Two methods are exposed to add lines to the view, `line` and `box`.
 Use `box` when you'd like to draw four lines with the same style for
 a box.  Use `line` for complete control of each segment.
@@ -98,9 +102,14 @@ Both take the same parameters:
   * `from`
   * `to`
   * `style`
+  * `color`
+    * `foreground`
+    * `background`
 
 where `from` and `to` are the two coordinates defining the shape and
-`style` is the display style for the line or box.
+`style` is the display style for the line or box.  `color.foreground`
+and `color.background` determine the foreground and background colors,
+respectively.
 
 The restrictions on `from` and `to` for lines are that they
 
@@ -119,6 +128,9 @@ include all non-negative coordinates, so the length of the result
 will be `R * (C + 1)` characters, where `R` is the maximum row and
 `C` the maximum column.  The extra character per line is, of course,
 the newline.
+
+The `lines()` instance is also a stream, so pipe it somewhere!  See
+the `sorting` example for details.
 
 ##### ╭╮☲☲☲╭╮ #####
 
