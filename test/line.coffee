@@ -57,12 +57,28 @@ describe "Line", ->
 
       l.style.should.equal "normal"
 
+    it "defaults foreground color to none", ->
+      l = line
+        from: [0, 0]
+        to: [0, 1]
+
+      l.color.foreground.should.equal "none"
+
+    it "defaults background color to none", ->
+      l = line
+        from: [0, 0]
+        to: [0, 1]
+
+      l.color.background.should.equal "none"
+
     it "takes ordered parameters in concise version", ->
-      l = line [0, 0], [1, 0], "bold"
+      l = line [0, 0], [1, 0], "bold", "red", "blue"
 
       l.from[0].should.equal 0
       l.to[0].should.equal 1
       l.style.should.equal "bold"
+      l.color.foreground.should.equal "red"
+      l.color.background.should.equal "blue"
 
   describe "horizontal", ->
     it "is true for coordinates sharing a row", ->

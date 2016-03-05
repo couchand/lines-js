@@ -24,7 +24,11 @@ draw = (a, b) ->
       when a then 'bold'
       when b then 'double'
       else 'normal'
-    pic.line [+index, 10], [+index, 10-value], style
+    color = switch +index
+      when a then 'red'
+      when b then 'cyan'
+      else 'none'
+    pic.line [+index, 10], [+index, 10-value], style, color
   
   term.erase 'screen'
   term.position 0, 0
